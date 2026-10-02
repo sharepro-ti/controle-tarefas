@@ -1,0 +1,52 @@
+@page "/"
+@model QuadroModel
+@{
+    ViewData["Title"] = "Quadro";
+    var nomes = new[] { "Novo", "Andamento", "Bloqueado", "Concluído" };
+}
+<div class="quadro-cabecalho">
+    <div>
+        <h1>Quadro de tarefas</h1>
+        <p class="text-secondary mb-0"><span id="total-tarefas">@Model.Tarefas.Count</span> tarefas</p>
+    </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-tarefa">Nova tarefa</button>
+</div>
+<div id="erro-quadro" class="alert alert-danger" role="alert" hidden></div>
+<div class="quadro" id="quadro" data-mover-url="@Url.Page("/Quadro", "Mover")">
+    @foreach (var status in Enum.GetValues<StatusTarefa>())
+    {
+        var tarefas = Model.Tarefas.Where(tarefa => tarefa.Status == status).ToList();
+        <section class="coluna status-@((int)status)" data-status="@((int)status)" aria-labelledby="titulo-@status">
+            <div class="coluna-cabecalho">
+                <h2 id="titulo-@status">@nomes[(int)status]</h2>
+                <span class="contador" aria-label="Quantidade de tarefas">@tarefas.Count</span>
+            </div>
+            <div class="coluna-cartoes">
+                @foreach (var tarefa in tarefas)
+                {
+                    <partial name="_Cartao" model="tarefa" />
+                }
+                <p class="coluna-vazia" hidden="@(tarefas.Count > 0)">Nenhuma tarefa</p>
+            </div>
+        </section>
+    }
+</div>
+
+<div class="modal fade" id="modal-tarefa" tabindex="-1" aria-labelledby="titulo-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <form method="post" asp-page-handler="Criar" class="modal-content" id="formulario-tarefa">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="titulo-modal">Nova tarefa</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <div id="erro-cadastro" class="alert alert-danger" role="alert" hidden></div>
+                <partial name="_Formulario" model="Model.Tarefa" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="salvar-tarefa">Salvar tarefa</button>
+            </div>
+        </form>
+    </div>
+</div>

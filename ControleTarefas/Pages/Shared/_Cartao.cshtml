@@ -1,0 +1,15 @@
+@model Tarefa
+<article class="card cartao" draggable="true" data-id="@Model.Id" data-status="@((int)Model.Status)" aria-label="@Model.Titulo">
+    <div class="card-body">
+        <div class="cartao-meta">
+            <span>#@Model.Id</span>
+            <time datetime="@Model.Data.ToString("yyyy-MM-dd")">@Model.Data.ToString("dd/MM/yyyy")</time>
+        </div>
+        <h3 class="cartao-titulo">@Model.Titulo</h3>
+        <p class="cartao-descricao">@Model.Descricao</p>
+        <div class="cartao-acoes">
+            <a asp-page="/Editar" asp-route-id="@Model.Id" class="btn btn-sm btn-outline-secondary">Editar</a>
+            <a asp-page="/Excluir" asp-route-id="@Model.Id" class="btn btn-sm btn-outline-danger">Excluir</a>
+        </div>
+    </div>
+</article>

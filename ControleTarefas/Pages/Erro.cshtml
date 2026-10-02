@@ -1,0 +1,11 @@
+@page
+@model ErroModel
+@{
+    ViewData["Title"] = "Erro";
+}
+<div class="pagina-formulario">
+    <h1>Não foi possível concluir a solicitação</h1>
+    <p>Tente novamente mais tarde.</p>
+    <p class="text-secondary">Identificador da solicitação: <code>@Model.Identificador</code></p>
+    <a asp-page="/Quadro" class="btn btn-primary">Voltar ao quadro</a>
+</div>

@@ -1,0 +1,23 @@
+@model Tarefa
+@{
+    ViewData.TemplateInfo.HtmlFieldPrefix = "Tarefa";
+}
+<div asp-validation-summary="All" class="text-danger" role="alert"></div>
+<div class="mb-3">
+    <label asp-for="Titulo" class="form-label">Título</label>
+    <input asp-for="Titulo" class="form-control" required />
+</div>
+<div class="mb-3">
+    <label asp-for="Descricao" class="form-label">Descrição</label>
+    <textarea asp-for="Descricao" class="form-control" rows="4" required></textarea>
+</div>
+<div class="row g-3">
+    <div class="col-sm-6">
+        <label asp-for="Data" class="form-label">Data</label>
+        <input asp-for="Data" type="date" asp-format="{0:yyyy-MM-dd}" class="form-control" required />
+    </div>
+    <div class="col-sm-6">
+        <label asp-for="Status" class="form-label">Status</label>
+        <select asp-for="Status" asp-items="Html.GetEnumSelectList<StatusTarefa>()" class="form-select" required></select>
+    </div>
+</div>

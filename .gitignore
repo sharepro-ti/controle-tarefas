@@ -1,0 +1,5 @@
+**/bin/
+**/obj/
+**/tarefas.db*
+.DS_Store
+._*

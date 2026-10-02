@@ -1,0 +1,51 @@
+:root {
+  --azul: #1456b8;
+  --texto: #25313d;
+  --borda: #dce2e7;
+}
+
+body {
+  background: #f6f8fa;
+  color: var(--texto);
+  font-family: "Trebuchet MS", sans-serif;
+  letter-spacing: 0;
+}
+
+.topo { background: var(--azul); }
+.navbar-brand { font-weight: 700; white-space: normal; }
+.btn-primary { --bs-btn-bg: var(--azul); --bs-btn-border-color: var(--azul); }
+h1 { font-size: 1.65rem; font-weight: 700; overflow-wrap: anywhere; }
+.quadro-cabecalho { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.75rem; }
+.quadro { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.coluna { --cor: var(--azul); min-width: 0; background: #edf1f4; border-top: 4px solid var(--cor); }
+.status-1 { --cor: #c49308; }
+.status-2 { --cor: #c93848; }
+.status-3 { --cor: #228652; }
+.coluna-cabecalho { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: 1rem; }
+.coluna-cabecalho h2 { font-size: 1rem; font-weight: 700; margin: 0; }
+.contador { min-width: 1.75rem; text-align: center; font-size: .8rem; font-weight: 700; color: var(--cor); }
+.coluna-cartoes { min-height: 19rem; padding: 0 .75rem .75rem; }
+.coluna-vazia { text-align: center; color: #687582; margin: 2.5rem 0; font-size: .9rem; }
+.cartao { border: 1px solid var(--borda); border-radius: 6px; box-shadow: 0 2px 3px #25313d08; margin-bottom: .75rem; cursor: grab; }
+.cartao-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; color: #687582; font-size: .75rem; margin-bottom: .75rem; }
+.cartao-titulo { font-size: 1rem; font-weight: 700; overflow-wrap: anywhere; }
+.cartao-descricao { font-size: .9rem; color: #586570; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cartao-acoes { display: flex; flex-wrap: wrap; gap: .5rem; padding-top: .25rem; }
+.arrastando { opacity: .5; }
+.destino { outline: 2px dashed var(--cor); outline-offset: -2px; }
+.pagina-formulario { max-width: 640px; margin: 0 auto; }
+.detalhes-tarefa { border-top: 1px solid var(--borda); padding-top: 1.25rem; overflow-wrap: anywhere; }
+.descricao-completa { white-space: pre-wrap; }
+.validation-summary-valid { display: none; }
+[hidden] { display: none !important; }
+
+@media (max-width: 991px) {
+  .quadro { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 575px) {
+  .quadro { grid-template-columns: minmax(0, 1fr); }
+  .quadro-cabecalho { align-items: flex-start; flex-direction: column; }
+  .navbar-brand { font-size: 1.05rem; }
+  .coluna-cartoes { min-height: 8rem; }
+}
